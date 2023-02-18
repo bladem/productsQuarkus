@@ -3,6 +3,6 @@ package org.pausanchez;
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 @QuarkusIntegrationTest
-public class ExampleResourceIT extends ExampleResourceTest {
+public class ProductApiIT extends ProductApiTest {
     // Execute the same tests but in packaged mode.
 }
