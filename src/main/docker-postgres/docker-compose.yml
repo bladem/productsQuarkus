@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:13.2
+    environment:
+      POSTGRES_DB: veterinarios
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "9000:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
