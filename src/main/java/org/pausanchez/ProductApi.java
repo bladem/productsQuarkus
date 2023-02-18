@@ -24,6 +24,12 @@ public class ProductApi {
         return Response.ok().build();
     }
 
+    @PUT
+    public Response update(Product product){
+        productRepository.updateProduct(product);
+        return Response.ok().build();
+    }
+
     @GET
     public List<Product> list(){
         return productRepository.listProduct();

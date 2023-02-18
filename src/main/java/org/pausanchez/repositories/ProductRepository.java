@@ -28,4 +28,9 @@ public class ProductRepository {
     public List<Product> listProduct(){
         return entityManager.createQuery("select p from Product p").getResultList();
     }
+
+    @Transactional
+    public void updateProduct(Product product){
+        entityManager.merge(product);
+    }
 }
