@@ -1,4 +1,4 @@
-package org.pausanchez;
+package org.pausanchez.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
