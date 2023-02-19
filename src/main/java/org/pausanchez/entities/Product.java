@@ -1,16 +1,21 @@
 package org.pausanchez.entities;
 
 
-import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Entity
 @Data
-public class Product extends PanacheEntity {
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String code;
     private String name;
     private String description;

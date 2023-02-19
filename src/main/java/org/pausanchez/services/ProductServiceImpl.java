@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService{
         log.info("Actualizando producto {}", product);
 
         return Panache
-                .withTransaction(() -> productRepository.findById(product.id)
+                .withTransaction(() -> productRepository.findById(product.getId())
                         .onItem().ifNotNull().invoke(entity -> {
                             entity.setName(product.getName());
                             entity.setDescription(product.getDescription());
