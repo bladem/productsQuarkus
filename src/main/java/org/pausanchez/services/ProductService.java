@@ -17,4 +17,12 @@ public interface ProductService {
     Uni<Response> delete(Long id);
 
     Uni<Product> getById(Long id);
+
+    Uni<Product> addMutation(Product product);
+
+    Uni<Boolean> deleteMutation(Long id);
+
+    Uni<Product> updateMutation(Product product);
+
+
 }
