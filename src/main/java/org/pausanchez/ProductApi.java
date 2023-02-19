@@ -19,25 +19,37 @@ public class ProductApi {
 
     @POST
     public Response add(Product product){
-        productRepository.createProduct(product);
+        productRepository.save(product);
 
         return Response.ok().build();
     }
 
     @PUT
     public Response update(Product product){
-        productRepository.updateProduct(product);
+        Product product1 = productRepository.findById(product.getId()).get();
+        product1.setCode(product.getCode());
+        product1.setDescription(product.getDescription());
+        product1.setName(product.getName());
+
+        productRepository.save(product1);
         return Response.ok().build();
     }
 
     @GET
     public List<Product> list(){
-        return productRepository.listProduct();
+        return productRepository.findAll();
     }
 
     @DELETE
-    public Response delete(Product product){
-        productRepository.deleteProduct(product);
+    @Path("/product/{id}")
+    public Response delete(@PathParam("id") Long id){
+        productRepository.delete(productRepository.findById(id).get());
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/product/{id}")
+    public Product getById(@PathParam("id") Long id){
+        return productRepository.findById(id).get();
     }
 }

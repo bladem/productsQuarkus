@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.pausanchez.entities.Product;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.core.Is.is;
 
 @QuarkusTest
 public class ProductApiTest {
