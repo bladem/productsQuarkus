@@ -1,18 +1,20 @@
 package org.pausanchez.services;
 
+import io.smallrye.mutiny.Uni;
 import org.pausanchez.entities.Product;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 public interface ProductService {
 
-    void add(Product product);
+    Uni<Response> add(Product product);
 
-    void update(Product product);
+    Uni<Response> update(Product product);
 
-    List<Product> getProducts();
+    Uni<List<Product>> getProducts();
 
-    void delete(Long id);
+    Uni<Response> delete(Long id);
 
-    Product getById(Long id);
+    Uni<Product> getById(Long id);
 }

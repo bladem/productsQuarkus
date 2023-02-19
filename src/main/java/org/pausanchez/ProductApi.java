@@ -1,5 +1,7 @@
 package org.pausanchez;
 
+import io.netty.handler.codec.http.HttpResponseStatus;
+import io.smallrye.mutiny.Uni;
 import org.pausanchez.entities.Product;
 import org.pausanchez.services.ProductService;
 
@@ -25,12 +27,15 @@ public class ProductApi {
 
     @PUT
     public Response update(Product product){
+        if (product == null || product.getCode() == null) {
+            throw new WebApplicationException("Product code was not set on request.", HttpResponseStatus.UNPROCESSABLE_ENTITY.code());
+        }
         productService.update(product);
         return Response.ok().build();
     }
 
     @GET
-    public List<Product> getProducts(){
+    public Uni<List<Product>> getProducts(){
         return productService.getProducts();
     }
 
@@ -43,7 +48,7 @@ public class ProductApi {
 
     @GET
     @Path("/product/{id}")
-    public Product getById(@PathParam("id") Long id){
+    public Uni<Product> getById(@PathParam("id") Long id){
         return productService.getById(id);
     }
 }

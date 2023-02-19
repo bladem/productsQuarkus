@@ -1,7 +1,10 @@
 package org.pausanchez.repositories;
 
+import io.quarkus.hibernate.reactive.panache.PanacheRepositoryBase;
 import org.pausanchez.entities.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class ProductRepository implements PanacheRepositoryBase<Product, Long> {
 }
