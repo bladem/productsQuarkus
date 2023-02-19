@@ -64,4 +64,27 @@ public class ProductServiceImpl implements ProductService{
         log.info("Obteniendo producto by id:{}",id);
         return productRepository.findById(id);
     }
+
+    @Override
+    public Uni<Product> addMutation(Product product) {
+        return Panache.withTransaction(()-> productRepository.persist(product))
+                .replaceWith(product);
+    }
+
+    @Override
+    public Uni<Boolean> deleteMutation(Long id) {
+        return Panache.withTransaction(() -> productRepository.deleteById(id));
+    }
+
+    @Override
+    public Uni<Product> updateMutation(Product product) {
+        return Panache
+                .withTransaction(() -> productRepository.findById(product.getId())
+                        .onItem().ifNotNull().invoke(entity -> {
+                            entity.setName(product.getName());
+                            entity.setDescription(product.getDescription());
+                            entity.setCode(product.getCode());
+                        })
+                );
+    }
 }
